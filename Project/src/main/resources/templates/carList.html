@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+
+    <style>
+        .container{
+            margin: 0;
+            padding: 0;
+            font-family: Verdana;
+            background-color: #d7d7d0;
+        }
+        .heading{
+            text-align: center;
+            color: coral;
+            padding: 20px;
+        }
+        .heading h1, .heading h3{
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .car-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 20px;
+        }
+        .car-box{
+            background-color: white;
+            border-radius: 10px;
+            width: 300px;
+            height: 380px;
+            position: relative;
+            overflow: hidden;
+        }
+        .car-img img{
+            width: 300px;
+            height: 200px;
+            object-fit: fill;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            cursor: pointer;
+        }
+        .car-img img:hover{
+            scale: 1.01;
+            transition: 0.6s ease-in-out;
+            opacity: 60%;
+        }
+        .text-container{
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            font-size: 15px;
+            gap: 0.5rem;
+        }
+        p{
+            margin: 0;
+        }
+        .text-heading{
+            margin: 0;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .text-subheading{
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            gap: 0.5rem;
+        }
+        .text-basis{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .text-desc{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .button-container{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+        }
+        .button{
+            width: 130px;
+            background-color: coral;
+            border: none;
+            padding: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+        }
+        .button:hover{
+            background-color: transparent;
+            color: coral;
+            border: 1px solid coral;
+            transition: 0.6s ease-in-out;
+        }
+        .text-price{
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="container">
+<div >
+    <div class="heading">
+        <h1>Car Rental</h1>
+        <h3>Welcome to our Garage</h3>
+    </div>
+    <div class="car-container">
+        <div th:each="car: ${cars}" class="car-box">
+            <div class="car-img"> <a th:href="@{/cars/{id}(id=${car.carId})}"><img th:src="${car.carImage}"></a></div>
+            <div class="text-container">
+                <div class="text-heading">
+                    <p th:text="${car.carName}">-</p>
+                    <p th:text="${car.carModel}" class="text-basis">-</p>
+                </div>
+                <div class="text-subheading">
+                    <p th:text="${car.carDesc}" class="text-desc">-</p>
+                    <div class="text-price">
+                        <p>$</p>
+                        <p th:text="${car.price}">-</p>
+                        <p>/month</p>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <div>
+                        <form th:action="@{/cars/delete/{id}(id=${car.carId})}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="button">Delete</button>
+                        </form>
+                    </div>
+                    <div>
+                        <a th:href="@{/cars/updateform/{id}(id=${car.carId})}"><button type="submit" class="button">Edit</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
