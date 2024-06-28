@@ -117,6 +117,11 @@
             display: flex;
             align-items: center;
         }
+        .add-button{
+            position: absolute;
+            right: 150px;
+            top: 50px;
+        }
     </style>
 </head>
 <body class="container">
@@ -124,6 +129,9 @@
     <div class="heading">
         <h1>Car Rental</h1>
         <h3>Welcome to our Garage</h3>
+    </div>
+    <div class="add-button">
+        <a th:href="@{/cars/addform}"><button class="button">Add</button></a>
     </div>
     <div class="car-container">
         <div th:each="car: ${cars}" class="car-box">

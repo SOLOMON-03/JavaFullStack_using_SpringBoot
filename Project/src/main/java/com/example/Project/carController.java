@@ -54,10 +54,14 @@ public class carController {
 //        return "redirect:/books";
 //    }
 
+    @GetMapping("/cars/addform")
+    public String addForm(Model model) {
+        return "carInsert";
+    }
 
     @PostMapping("/cars/add")
     public String addCar(@RequestParam String carName, @RequestParam String carDesc, @RequestParam int price, @RequestParam String carModel, @RequestParam String carImage, Model model) {
-        Car newCar = new Car(0, carName, carDesc, price, carModel, carImage);
+        Car newCar = new Car(0, carName, carDesc, price,carImage, carModel);
         carservice.addBook(newCar);
         return "redirect:/cars";
     }

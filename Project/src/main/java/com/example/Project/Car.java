@@ -39,18 +39,19 @@ public class Car {
     public void setPrice(int price) {
         this.price = price;
     }
-    public String getCarModel() {
-        return carModel;
-    }
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
     public String getCarImage() {
         return carImage;
     }
     public void setCarImage(String carImage) {
         this.carImage = carImage;
     }
+    public String getCarModel() {
+        return carModel;
+    }
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
 
     @Override
     public String toString() {

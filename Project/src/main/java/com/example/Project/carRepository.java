@@ -42,7 +42,7 @@ public class carRepository {
     }
 
     public void addCar(Car newCar) {
-        String sql = "INSERT INTO Car (carName, carDesc, price, carImage, carModel) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Car (carName, carDesc, price, carImage, carModel) VALUES (?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcClient.sql(sql)
